@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>countries</title>
     <style>
+      #countries {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
       .country {
         background-color: antiquewhite;
         border: 2px solid greenyellow;
@@ -16,7 +20,16 @@
     </style>
   </head>
   <body>
-    <h1>Countries</h1>
+    <section>
+      <h1>Country Details</h1>
+      <div id="country-details">
+
+      </div>
+    </section>
+
+    
+
+    <h2>All Countries Name</h2>
     <div id="countries"></div>
 
     <script src="countries.js"></script>
