@@ -1,15 +1,32 @@
+document.getElementById("error-msg").style.display = "none";
 const searchFood = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
   searchField.value = "";
-  if(searchText == "") {
+  document.getElementById("error-msg").style.display = "none";
+
+  if (searchText == "") {
     alert("Please enter a search term");
     return;
   }
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displaySearchResult(data.meals));
+    .then((data) => displaySearchResult(data.meals))
+    .catch((error) => displayError(error));
+};
+
+// const displayError = (error) => {
+//   document.getElementById("error-msg").style.display = "block";
+// };
+
+const displayError = (error) => {
+  document.getElementById("error-msg").style.display = "block";
+  document.getElementById("error-msg").innerHTML = `
+  <div class="container alert alert-danger w-50 text-center">
+  <strong>Error!</strong> ${error}
+  </div>
+  `;
 };
 
 const displaySearchResult = (meals) => {
@@ -19,7 +36,7 @@ const displaySearchResult = (meals) => {
     alert("No result found");
     return;
   }
-  
+
   meals.forEach((meal) => {
     const div = document.createElement("div");
     div.classList.add("col");
